@@ -4,6 +4,10 @@ echo "Instalar o KEA DHCP Server..."
 sudo yum update -y
 sudo yum install -y kea
 
+# Recolha de IPs
+read -p "IP do gateway: " ip_gateway
+read -p "IP do DNS: " dns
+
 # Interface em Lan Segment
 sudo nmcli connection modify ens192 ipv4.method manual ipv4.addresses $ip_gateway/24
 sudo nmcli connection down ens192
@@ -25,9 +29,6 @@ else
   echo "ERRO: IPs inválidos. Saindo..."
   exit 1
 fi
-
-read -p "IP do gateway: " ip_gateway
-read -p "IP do DNS: " dns
 
 if [[ ! $ip_gateway =~ $subnet ]]; then
   echo "ERRO: Gateway fora da subrede."
