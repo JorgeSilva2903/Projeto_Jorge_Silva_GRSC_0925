@@ -5,7 +5,7 @@ sudo yum update -y
 sudo yum install -y kea
 
 # Interface em Lan Segment
-sudo nmcli connection modify ens192 ipv4.method manual ipv4.addresses 192.168.5.254/24
+sudo nmcli connection modify ens192 ipv4.method manual ipv4.addresses $ip_gateway/24
 sudo nmcli connection down ens192
 sudo nmcli connection up ens192
 
